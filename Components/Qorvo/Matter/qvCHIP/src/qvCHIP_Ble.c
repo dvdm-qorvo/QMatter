@@ -20,9 +20,9 @@
  * INCIDENTAL OR CONSEQUENTIAL DAMAGES,
  * FOR ANY REASON WHATSOEVER.
  *
- * $Header: //depot/release/Embedded/Applications/P236_CHIP/v0.9.7.1/comps/qvCHIP/src/qvCHIP_Ble.c#1 $
- * $Change: 189026 $
- * $DateTime: 2022/01/18 14:46:53 $
+ * $Header: //depot/release/Embedded/Applications/P236_CHIP/v0.9.7.2/comps/qvCHIP/src/qvCHIP_Ble.c#1 $
+ * $Change: 191145 $
+ * $DateTime: 2022/02/22 16:42:53 $
  */
 
 /** @file "qvCHIP_Ble.c"

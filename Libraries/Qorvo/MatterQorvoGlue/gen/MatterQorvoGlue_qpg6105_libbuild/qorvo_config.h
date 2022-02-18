@@ -33,12 +33,12 @@
  * Version info
  */
 
-#define GP_CHANGELIST                                                            189048
+#define GP_CHANGELIST                                                            191148
 #define GP_VERSIONINFO_APP                                                       MatterQorvoGlue_qpg6105_libbuild
 #define GP_VERSIONINFO_BASE_COMPS                                                2,10,2,1
 #define GP_VERSIONINFO_BLE_COMPS                                                 2,10,2,0
-#define GP_VERSIONINFO_DATE                                                      2022-01-20
-#define GP_VERSIONINFO_GLOBAL_VERSION                                            0,7,0,0
+#define GP_VERSIONINFO_DATE                                                      2022-02-22
+#define GP_VERSIONINFO_GLOBAL_VERSION                                            0,7,1,0
 #define GP_VERSIONINFO_HOST                                                      UNKNOWN
 #define GP_VERSIONINFO_PROJECT                                                   P345_Matter_DK_Endnodes
 #define GP_VERSIONINFO_USER                                                      UNKNOWN@UNKNOWN
@@ -58,14 +58,6 @@
 
 /* The amount of dedicated connection complete buffers */
 #define GP_BLE_NR_OF_CONNECTION_COMPLETE_EVENT_BUFFERS                           0
-
-
-/*
- * Component: gpBleConfig
- */
-
-/* The amount of LLCP procedures that are supported */
-#define GP_BLE_NR_OF_SUPPORTED_PROCEDURES                                        0
 
 
 /*

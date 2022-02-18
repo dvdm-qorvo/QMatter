@@ -145,7 +145,17 @@ extern const unsigned long _ldata;
 extern const unsigned long _sbss;
 extern const unsigned long _lbss;
 extern const unsigned long _estack; /* Application stack */
+#if defined(GP_DIVERSITY_ROMUSAGE_FOR_MATTER)
+extern const unsigned long _sidata_m;
+extern const unsigned long _sdata_m;
+extern const unsigned long _ldata_m;
+extern const unsigned long _sbss_m;
+extern const unsigned long _lbss_m;
+#endif //defined(GP_DIVERSITY_ROMBUILD_FOR_MATTER) || defined(GP_DIVERSITY_ROMUSAGE_FOR_MATTER)
 #else
+#if defined(GP_DIVERSITY_ROMUSAGE_FOR_MATTER)
+#error "Matter ROM build with non-GCC compiler is not supported yet"
+#endif //defined(GP_DIVERSITY_ROMBUILD_FOR_MATTER) || defined(GP_DIVERSITY_ROMUSAGE_FOR_MATTER)
 #endif
 
 #ifndef GP_HALCORTEXM4_DIVERSITY_CUSTOM_IVT
@@ -504,6 +514,12 @@ extern void __libc_init_array(void);
     __builtin_memcpy((void*)&_sdata, (void*)&_sidata, (size_t)&_ldata);
     // zero out bss
     __builtin_memset((void*)&_sbss, 0, (size_t)&_lbss);
+#if defined(GP_DIVERSITY_ROMUSAGE_FOR_MATTER)
+    // copy data section for the matter rom
+    __builtin_memcpy((void*)&_sdata_m, (void*)&_sidata_m, (size_t)&_ldata_m);
+    // zero out bss for the matter rom
+    __builtin_memset((void*)&_sbss_m, 0, (size_t)&_lbss_m);
+#endif //defined(GP_DIVERSITY_ROMBUILD_FOR_MATTER) || defined(GP_DIVERSITY_ROMUSAGE_FOR_MATTER)
     // Initialize C++ constructor/destructor code
     __libc_init_array();
 #elif defined(__IAR_SYSTEMS_ICC__)

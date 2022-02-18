@@ -5,7 +5,7 @@ ifndef BASEDIR
 BASEDIR:=$(abspath $(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 endif
 # Global vars
-OS_USED?=WSL
+OS_USED?=LINUX
 GPHUB_ROOT?=/mnt/c/gpHub
 ROOTDIR?=$(BASEDIR)/../../..
 WORKDIR=$(BASEDIR)/../../../Work/OpenThreadQorvoGlue_qpg6105_mtd
@@ -25,11 +25,11 @@ POSTBUILD_SCRIPT:=
 FLAGS=
 # Build variables
 ARMCHIP=K8E
-CFLAGS_COMPILER += -ffile-prefix-map=/mnt/c/WS_SDP012_v0_7_0_0/Applications/P959_OpenThread=QorvoThreadApp
-CFLAGS_COMPILER += -ffile-prefix-map=/mnt/c/WS_SDP012_v0_7_0_0/Components/Qorvo=QorvoComponents
-CFLAGS_COMPILER += -ffile-prefix-map=/mnt/c/WS_SDP012_v0_7_0_0/Components/ThirdParty=ThirdParty
-CFLAGS_COMPILER += -ffile-prefix-map=/mnt/c/WS_SDP012_v0_7_0_0/gpHub=ThirdParty
-CFLAGS_COMPILER += -ffile-prefix-map=/mnt/c/WS_SDP012_v0_7_0_0=QorvoSDK
+CFLAGS_COMPILER += -ffile-prefix-map=/mnt/c/WS_SDP012_v0_7_1_0/Applications/P959_OpenThread=QorvoThreadApp
+CFLAGS_COMPILER += -ffile-prefix-map=/mnt/c/WS_SDP012_v0_7_1_0/Components/Qorvo=QorvoComponents
+CFLAGS_COMPILER += -ffile-prefix-map=/mnt/c/WS_SDP012_v0_7_1_0/Components/ThirdParty=ThirdParty
+CFLAGS_COMPILER += -ffile-prefix-map=/mnt/c/WS_SDP012_v0_7_1_0/gpHub=ThirdParty
+CFLAGS_COMPILER += -ffile-prefix-map=/mnt/c/WS_SDP012_v0_7_1_0=QorvoSDK
 CFLAGS_COMPILER += -ffile-prefix-map=/mnt/c/gpHub/Components/ThirdParty/P959_ot-qorvo=ot-qorvo
 CFLAGS_COMPILER += -ffile-prefix-map=/mnt/c/gpHub=ThirdParty
 CFLAGS_COMPILER += -ffile-prefix-map=/mnt/r=ThirdParty

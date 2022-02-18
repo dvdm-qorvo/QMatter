@@ -20,9 +20,9 @@
  * INCIDENTAL OR CONSEQUENTIAL DAMAGES,
  * FOR ANY REASON WHATSOEVER.
  *
- * $Header: //depot/release/Embedded/Applications/P236_CHIP/v0.9.7.1/comps/qvCHIP/src/qvCHIP_KVS.c#1 $
- * $Change: 189026 $
- * $DateTime: 2022/01/18 14:46:53 $
+ * $Header: //depot/release/Embedded/Applications/P236_CHIP/v0.9.7.2/comps/qvCHIP/src/qvCHIP_KVS.c#1 $
+ * $Change: 191145 $
+ * $DateTime: 2022/02/22 16:42:53 $
  */
 
 /** @file "qvCHIP_KVS.c"
@@ -80,7 +80,11 @@
 #define MAX_KVS_TOKENMASK_LEN (GP_NVM_MAX_TOKENLENGTH - 1)
 
 /* Maximum length for values stored in KVS */
+#ifdef GP_DIVERSITY_ROMUSAGE_FOR_MATTER
+#define MAX_KVS_VALUE_LEN (251)
+#else //GP_DIVERSITY_ROMUSAGE_FOR_MATTER
 #define MAX_KVS_VALUE_LEN (255)
+#endif //GP_DIVERSITY_ROMUSAGE_FOR_MATTER
 
 typedef PACKED_PRE struct qvCHIP_KVS_Tag_ {
     uint8_t componentId;

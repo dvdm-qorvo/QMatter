@@ -40,6 +40,11 @@ SECTIONS
     .flashjumptable  flashjumptable_start_address :  {. = ALIGN(4); KEEP(*(.flashjumptable));   } > FLASH
     .isr_vector : ALIGN(0x100) { KEEP(*(.isr_vector)); } > FLASH
 
+    /* Add the Matter jumptable at this fixed location */
+    m_jumptable_start_offset = 0x1600;
+    m_flashjumptable_start_address = ORIGIN(FLASH) + m_jumptable_start_offset;
+    .m_flashjumptable  m_flashjumptable_start_address :  {. = ALIGN(4); KEEP(*(.matterjumptable));   } > FLASH
+
 
     .text :
     {
@@ -91,6 +96,13 @@ SECTIONS
 
     /* Windowed sections */
     /* ram_regmap, events, pbm options and pbm data are taken from buffers in .lower_ram_retain */
+    .lower_ram_retain_gpmicro_accessible_mrom (NOLOAD) :  {
+        . = ALIGN(4);
+        _slower_ram_retain_gpmicro_accessible_m = .;
+        . += 0x2fe;
+        _elower_ram_retain_gpmicro_accessible_m = .;
+    } > RAM
+    _llower_ram_retain_gpmicro_accessible_m = _elower_ram_retain_gpmicro_accessible_m - _slower_ram_retain_gpmicro_accessible_m;
     .lower_ram_retain_gpmicro_accessible (NOLOAD) :  {
         . = ALIGN(4);
         *(.lower_ram_retain_gpmicro_accessible) *(.lower_ram_retain_gpmicro_accessible.*);
@@ -102,6 +114,31 @@ SECTIONS
     /* Check regions are allocated in lower ram */
     ASSERT(_elower_ram < eSYSRAM, "SYSRAM ram full")
 
+    ram_m_start_address = 0x20039e00;
+    ram_m_max_size = 0x2000;
+
+    .unused_area : { . += (ram_m_start_address - _elower_ram); } > RAM
+
+    .rom_m_bss ram_m_start_address :
+    {
+        . = ALIGN(4);
+        _sbss_m = .;
+        . += 0x965;
+        _ebss_m = .;
+    } > RAM
+    _lbss_m   = _ebss_m - _sbss_m;
+
+    .rom_m_data :
+    {
+        . = ALIGN(4);
+        _sdata_m = .;
+        . += 0x14c;
+        _edata_m = .;
+    } > RAM AT > ROM
+    _sidata_m = 0x4823d81;
+    _ldata_m = _edata_m - _sdata_m;
+
+    ASSERT((_lbss_m + _ldata_m) <= ram_m_max_size, "ROM used .bss + .data does not fit reserved area")
 
     .data :
     {

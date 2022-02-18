@@ -20,9 +20,9 @@
  * INCIDENTAL OR CONSEQUENTIAL DAMAGES,
  * FOR ANY REASON WHATSOEVER.
  *
- * $Header: //depot/release/Embedded/Applications/P236_CHIP/v0.9.7.1/comps/qvCHIP/src/qvCHIP.c#1 $
- * $Change: 189026 $
- * $DateTime: 2022/01/18 14:46:53 $
+ * $Header: //depot/release/Embedded/Applications/P236_CHIP/v0.9.7.2/comps/qvCHIP/src/qvCHIP.c#1 $
+ * $Change: 191145 $
+ * $DateTime: 2022/02/22 16:42:53 $
  */
 
 /** @file "qvCHIP.c"
@@ -55,6 +55,14 @@
 #ifdef GP_DIVERSITY_JUMPTABLES
 #include "gpJumpTables.h"
 #endif // GP_DIVERSITY_JUMPTABLES
+#ifdef GP_DIVERSITY_ROMUSAGE_FOR_MATTER
+#include "gpJumpTablesMatter.h"
+#endif //GP_DIVERSITY_ROMUSAGE_FOR_MATTER
+
+#if !defined(GP_BASECOMPS_DIVERSITY_NO_GPCOM_INIT) || !defined(GP_BASECOMPS_DIVERSITY_NO_GPLOG_INIT)
+#error "gpCom and gpLog components get initialized during qvCHIP_init! Make sure diversities are set so these \
+        components does not get initialized in gpBaseComps_StackInit."
+#endif //!defined(GP_BASECOMPS_DIVERSITY_NO_GPCOM_INIT) || !defined(GP_BASECOMPS_DIVERSITY_NO_GPLOG_INIT)
 
 /* </CodeGenerator Placeholder> Includes */
 
@@ -104,33 +112,52 @@
 void CHIP_Info(void)
 {
     gpVersion_SoftwareInfo_t appInfo;
+    UInt8 nrtRomVersion;
+    UInt8 matterRomVersion;
 
     // Print version info
     gpVersion_GetSoftwareInfo(&appInfo);
-
 #ifdef GP_DIVERSITY_JUMPTABLES
-    GP_LOG_SYSTEM_PRINTF("qvCHIP v%i.%i.%i.%i ROMv%u (CL:%lu) r:%x", 0,
+    nrtRomVersion = gpJumpTables_GetRomVersionFromRom();
 #else
-    GP_LOG_SYSTEM_PRINTF("qvCHIP v%i.%i.%i.%i (CL:%lu) r:%x", 0,
-#endif // GP_DIVERSITY_JUMPTABLES
+    nrtRomVersion = 0;
+#endif
+#ifdef GP_DIVERSITY_ROMUSAGE_FOR_MATTER
+    matterRomVersion = gpJumpTablesMatter_GetVersion();
+    if ( matterRomVersion != 1 )
+    {
+        GP_LOG_SYSTEM_PRINTF("Wrong ROM version detected (%d), ROMv1 expected", 0, matterRomVersion);
+        GP_ASSERT_SYSTEM(false);
+    }
+#else
+    matterRomVersion = 0;
+#endif
+
+    GP_LOG_SYSTEM_PRINTF("qvCHIP v%u.%u.%u.%u ROMv%u/%u (CL:%lu) r:%x", 0,
                          appInfo.version.major, appInfo.version.minor,
                          appInfo.version.revision, appInfo.version.patch,
-#ifdef GP_DIVERSITY_JUMPTABLES
-                         gpJumpTables_GetRomVersionFromRom(),
-#endif // GP_DIVERSITY_JUMPTABLES
-                         gpVersion_GetChangelist(),
+                         nrtRomVersion,
+                         matterRomVersion,
+                         (appInfo.changeList >> 8), //LSB reserved
                          gpReset_GetResetReason());
+
     gpLog_Flush();
 }
 
 void Application_Init(void)
 {
+    //Initialize gpCom/gpLog here already to get logging enabled.
+    //Allows to indicate ROM version compatibility immediately to the user.
+    gpCom_Init();
+    gpLog_Init();
+
+    CHIP_Info();
+
     qvCHIP_KvsInit();
 
     gpBaseComps_StackInit();
 
     qvIO_Init();
-    CHIP_Info();
 }
 /* </CodeGenerator Placeholder> StaticFunctionDefinitions */
 

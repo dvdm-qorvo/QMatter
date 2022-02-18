@@ -61,6 +61,7 @@
 #define GP_COMPONENT_ID_GPHAL                                                    7
 #define GP_COMPONENT_ID_HALCORTEXM4                                              6
 #define GP_COMPONENT_ID_HCI                                                      156
+#define GP_COMPONENT_ID_JUMPTABLESMATTER_K8E                                     60
 #define GP_COMPONENT_ID_JUMPTABLES_K8E                                           60
 #define GP_COMPONENT_ID_LOG                                                      11
 #define GP_COMPONENT_ID_NVM                                                      32
@@ -80,6 +81,13 @@
 #define GP_COMPONENT_ID_UTILS                                                    4
 #define GP_COMPONENT_ID_VERSION                                                  129
 #define GP_COMPONENT_ID_WMRK                                                     51
+
+/*
+ * Component: gpBaseComps
+ */
+
+#define GP_BASECOMPS_DIVERSITY_NO_GPCOM_INIT
+#define GP_BASECOMPS_DIVERSITY_NO_GPLOG_INIT
 
 /*
  * Component: gpBleAddressResolver
@@ -210,6 +218,7 @@
  */
 
 #define GP_DIVERSITY_ENABLE_DEFAULT_BOD_HANDLING
+#define GP_DIVERSITY_ROMUSAGE_FOR_MATTER
 #define GP_KX_FLASH_SIZE                                                         1024
 #define GP_KX_HEAP_SIZE                                                          (4 * 1024)
 #define GP_KX_RAM_SIZE                                                           128
@@ -231,7 +240,6 @@
  * Other flags
  */
 
-#define GP_BLE_NR_OF_SUPPORTED_PROCEDURE_CALLBACKS                               0
 #define GP_DIVERSITY_CORTEXM4
 #define GP_DIVERSITY_KEEP_NRT_FROM_FPGABITMAP
 #define GP_DIVERSITY_LOG

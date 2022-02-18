@@ -147,6 +147,9 @@
 #include "gpJumpTables.h"
 #endif
 
+#ifdef GP_DIVERSITY_ROMUSAGE_FOR_MATTER
+#include "gpJumpTablesMatter.h"
+#endif //GP_DIVERSITY_ROMUSAGE_FOR_MATTER
 
 #ifdef GP_COMP_SILEXCRYPTOSOC
 #include "silexCryptoSoc.h"
@@ -208,6 +211,9 @@ void gpBaseComps_StackInit(void)
     GP_ASSERT_SYSTEM(gpJumpTables_GetRomVersion() >= GPJUMPTABLES_MIN_ROMVERSION);
 #endif // (defined(GP_DIVERSITY_GPHAL_K8C) || defined(GP_DIVERSITY_GPHAL_K8D)) || defined(GP_DIVERSITY_GPHAL_K8E)) && defined (GP_DIVERSITY_GPHAL_INTERN) && (!defined(GP_DIVERSITY_KEEP_NRT_IN_FLASH)) && (!defined(GP_DIVERSITY_ROM_BUILD))
 
+#ifdef GP_DIVERSITY_ROMUSAGE_FOR_MATTER
+    gpJumpTablesMatter_Init();
+#endif //GP_DIVERSITY_ROMUSAGE_FOR_MATTER
 
 #ifdef GP_COMP_SCHED
     gpSched_Init();

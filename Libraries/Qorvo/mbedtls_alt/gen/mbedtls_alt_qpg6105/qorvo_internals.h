@@ -58,8 +58,6 @@
  */
 
 #define GP_BLE_NR_OF_CONNECTION_COMPLETE_EVENT_BUFFERS     0
-#define GP_BLE_NR_OF_SUPPORTED_PROCEDURES                  0
-#define GP_BLE_NR_OF_SUPPORTED_PROCEDURE_CALLBACKS         0
 #define GP_HAL_ES_ABS_EVENT_NMBR_OF_EVENTS                 0
 #define GP_SCHED_NR_OF_IDLE_CALLBACKS                      0
 

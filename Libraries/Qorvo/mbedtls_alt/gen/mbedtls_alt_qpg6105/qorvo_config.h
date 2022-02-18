@@ -33,7 +33,7 @@
  * Version info
  */
 
-#define GP_CHANGELIST                                      189026
+#define GP_CHANGELIST                                      191147
 
 
 #include "qorvo_internals.h"

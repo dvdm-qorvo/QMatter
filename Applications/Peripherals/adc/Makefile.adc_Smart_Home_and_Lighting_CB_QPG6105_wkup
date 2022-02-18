@@ -5,7 +5,7 @@ ifndef BASEDIR
 BASEDIR:=$(abspath $(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 endif
 # Global vars
-OS_USED?=WSL
+OS_USED?=LINUX
 GPHUB_ROOT?=/mnt/c/gpHub
 ROOTDIR?=$(BASEDIR)/../../..
 WORKDIR=$(BASEDIR)/../../../Work/adc_Smart_Home_and_Lighting_CB_QPG6105_wkup

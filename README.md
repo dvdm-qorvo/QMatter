@@ -48,6 +48,16 @@ The QPG6105 SoC is a future-proof multi-standard Smart Home communications contr
 ConcurrentConnect&trade; technology which enables multiple protocols (ZigBee, Thread and/or Bluetooth® LE) to operate
 simultaneously in a single chip design. This ensures compatibility with any open low-power standard ecosystem.
 
+To request your QPG6105 Matter Development Kit, contact Qorvo using this link: [Request a sample](https://www.qorvo.com/support/how-to-buy/request-a-sample?partNumber=Matter%20QPG6105DK)
+
+> This Qorvo evaluation board, development board, or development kit and all the features available through it is sold
+> and/or licensed to you for evaluation purposes only. You may not use this evaluation board, development board, or
+> development kit or any of its features in any revenue-generating products or services.
+
+> **WARNING:** In the QPG6105 radio board design, the diversity antenna efficiency is not fully optimized. It is not
+> recommended to evaluate the maximum range of the QPG6105 using the development kit hardware. Qorvo’s production boards
+> and customer layouts typically achieve -2 dBm to -3 dBm antenna efficiency.
+
 ## Installation
 Setting up the build environment and building the example applications has been tested on:
 <ol>
@@ -61,7 +71,7 @@ It is strongly advised to run one of both options mentioned above.
 QPG6105 Matter SDK uses submodules for some of its subcomponents. To clone the repository, use the command-line below:
 
 ```
-git clone --recurse-submodules -j8 https://github.com/Qorvo/QMatter -b v0.7.0.0
+git clone --recurse-submodules -j8 https://github.com/Qorvo/QMatter -b v0.7.1.0
 ```
 
 ## Folder structure
@@ -272,6 +282,10 @@ please refer to this [quick reference](Documents/User%20Manuals/PTC/GP_P345_UM_1
 > **WARNING:** To control the PTC software, additional tooling, called Radio Control Console (RCC), on an external PC is
 > needed. This RCC tooling is only supported for Windows machines. So make sure if you want to start using PTC software,
 > a Windows machine is at hand.
+
+> **WARNING:** In the QPG6105 radio board design, the diversity antenna efficiency is not fully optimized. It is not
+> recommended to evaluate the maximum range of the QPG6105 using the development kit hardware. Qorvo’s production boards
+> and customer layouts typically achieve -2 dBm to -3 dBm antenna efficiency.
 
 ## More information
 
