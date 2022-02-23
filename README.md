@@ -54,6 +54,11 @@ To request your QPG6105 Matter Development Kit, contact Qorvo using this link: [
 > and/or licensed to you for evaluation purposes only. You may not use this evaluation board, development board, or
 > development kit or any of its features in any revenue-generating products or services.
 
+> **WARNING:** In this version of the SDK, Base Components (gpNvm, Bluetooth LE controller, Bluetooth LE Host) that are used for Matter and proven to be stable, are now pushed 
+> to ROM. Using QPG6105 ROM offloaded SW maximizes application flash availability. To use this ROM enabled code, QPG6105 radio board with this ROM content is needed. To check 
+> you have a compatible QPG6105 radio board, advise to check the marking on the QPG6105 chip. The marking should indicate QPG6105, **E0.2.1**. If you see a marking of **E0.0.1**
+> it means the QPG6105 radio board is **not** compatible with this version of the SDK. Advise to request a new sample of the QPG6105 radio board.
+
 > **WARNING:** In the QPG6105 radio board design, the diversity antenna efficiency is not fully optimized. It is not
 > recommended to evaluate the maximum range of the QPG6105 using the development kit hardware. Qorvo’s production boards
 > and customer layouts typically achieve -2 dBm to -3 dBm antenna efficiency.
